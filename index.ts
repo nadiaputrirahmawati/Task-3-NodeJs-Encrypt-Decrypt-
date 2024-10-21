@@ -48,19 +48,18 @@ const Input = async (fileInput: string): Promise<string> => {
     return new Promise(resolve => rl.question(fileInput, answer => { rl.close(); resolve(answer); }));
 };
 
-// Fungsi utama untuk menjalankan program
 async function main() {
     try {
-        const command = await Input('Masukkan perintah (encrypt/decrypt): ');
-        const filePath = await Input('Masukkan jalur file: ');
-        const password = await Input('Masukkan kata sandi: ');
+        const perintah = await Input('Masukkan Perintah (encrypt/decrypt): ');
+        const filePath = await Input('Masukkan File: ');
+        const password = await Input('Masukkan Password: ');
 
-        if (command === 'encrypt') {
+        if (perintah === 'encrypt') {
             await Encrypt(filePath, password);
-        } else if (command === 'decrypt') {
+        } else if (perintah === 'decrypt') {
             await Decrypt(filePath, password);
         } else {
-            console.error('Perintah tidak dikenal. Gunakan "encrypt" atau "decrypt".');
+            console.error('Perintah tidak diketahui. Gunakan "encrypt" atau "decrypt".');
         }
     } catch (error) {
         console.error(`Terjadi kesalahan: ${error.message}`);
